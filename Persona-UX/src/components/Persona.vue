@@ -14,10 +14,10 @@ export default {
       cita: "",
       citaAutor: "",
       bio: "",
-      personalidad01: "",
-      personalidad02: "",
-      personalidad03: "",
-      personalidad04: "",
+      personalidad01: "50",
+      personalidad02: "50",
+      personalidad03: "50",
+      personalidad04: "50",
       objetivos: [],
       frustraciones: [],
       motivaciones: [],
@@ -143,8 +143,8 @@ export default {
         <div class="bg-fuchsia-600 ml-6 mt-0 text-white">
           <div class="ml-4 mt-2 mb-2">
             <label for="bio"><strong>Biografia</strong></label>
-            <br />
-            <textarea
+            <div class="mt-4">
+              <textarea
               placeholder="Escribe tu biografia aqui"
               class="pl-3 pr-3 bg-fuchsia-600 rounded placeholder-gray-200 text-base border-0 shadow outline-none focus:outline-none focus:ring w-11/12 mt-2"
               name="bio"
@@ -154,13 +154,14 @@ export default {
               maxlength="700"
               v-model="bio"
             ></textarea>
+            </div>
           </div>
         </div>
         <div class="bg-fuchsia-600 ml-2 mt-0 text-white">
           <div class="ml-4 mt-2 mb-2">
             <label for="objetivos"><strong>Objetivos</strong></label>
-            <br />
-            <textarea
+            <div class="mt-4">
+              <textarea
               placeholder="Escribe cuales son tus motivaciones aqui"
               class="pl-3 pr-3 bg-fuchsia-600 rounded placeholder-gray-200 text-base border-0 shadow outline-none focus:outline-none focus:ring w-11/12 mt-2"
               name="objetivos"
@@ -170,9 +171,10 @@ export default {
               maxlength="300"
               v-model="objetivos"
             ></textarea>
+            </div>
             <label for="frustraciones"><strong>Frustraciones</strong></label>
-            <br />
-            <textarea
+            <div class="mt-4">
+              <textarea
               placeholder="Escribe cuales son tus frustaciones aqui"
               class="pl-3 pr-3 bg-fuchsia-600 rounded placeholder-gray-200 text-base border-0 shadow outline-none focus:outline-none focus:ring w-11/12 mt-2"
               name="frustraciones"
@@ -182,13 +184,25 @@ export default {
               maxlength="300"
               v-model="frustraciones"
             ></textarea>
+            </div>
           </div>
         </div>
       </div>
       <div class="pt-5 m-0 text-white">
         <label class="mt-4 ml-10" for=""><strong>Personalidad</strong></label>
         <br />
-        <div class="relative ml-10 mt-6 mr-10">
+        <div class="relative ml-10 mt-4 mr-10">
+          <div class="grid grid-cols-3">
+            <span class="text-start text-sm font-medium"
+            >Introvertido</span
+          >
+          <span class="text-center text-sm font-medium">{{
+            this.personalidad01
+          }}</span>
+          <span class="text-end text-sm font-medium"
+            >Extrovertido</span
+          >
+          </div>
           <input
             v-model="personalidad01"
             type="range"
@@ -197,18 +211,20 @@ export default {
             set="50"
             class="w-full h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
           />
-          <span class="absolute left-0 top-0 -mt-2 text-sm font-medium"
-            >Introvertido</span
-          >
-          <span class="absolute left-1/2 top-0 -mt-2 text-sm font-medium">{{
-            this.personalidad01
-          }}</span>
-          <span class="absolute right-0 top-0 -mt-2 text-sm font-medium"
-            >Extrovertido</span
-          >
         </div>
         <br />
-        <div class="relative ml-10 mt-1 mr-10">
+        <div class="relative ml-10 mt-0 mr-10">
+          <div class="grid grid-cols-3">
+            <span class="text-start text-sm font-medium"
+            >Observador</span
+          >
+          <span class="text-center text-sm font-medium">{{
+            this.personalidad02
+          }}</span>
+          <span class="text-end text-sm font-medium"
+            >Intuitivo</span
+          >
+          </div>
           <input
             v-model="personalidad02"
             type="range"
@@ -217,18 +233,20 @@ export default {
             set="50"
             class="w-full h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
           />
-          <span class="absolute left-0 top-0 -mt-2 text-sm font-medium"
-            >Observador</span
-          >
-          <span class="absolute left-1/2 top-0 -mt-2 text-sm font-medium">{{
-            this.personalidad02
-          }}</span>
-          <span class="absolute right-0 top-0 -mt-2 text-sm font-medium"
-            >Intuitivo</span
-          >
         </div>
         <br />
-        <div class="relative ml-10 mt-1 mr-10">
+        <div class="relative ml-10 mt-0 mr-10">
+          <div class="grid grid-cols-3">
+            <span class="text-start text-sm font-medium"
+            >Emocional</span
+          >
+          <span class="text-center text-sm font-medium">{{
+            this.personalidad03
+          }}</span>
+          <span class="text-end text-sm font-medium"
+            >Pensamiento</span
+          >
+          </div>
           <input
             v-model="personalidad03"
             type="range"
@@ -237,18 +255,20 @@ export default {
             set="50"
             class="w-full h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
           />
-          <span class="absolute left-0 top-0 -mt-2 text-sm font-medium"
-            >Emocional</span
-          >
-          <span class="absolute left-1/2 top-0 -mt-2 text-sm font-medium">{{
-            this.personalidad03
-          }}</span>
-          <span class="absolute right-0 top-0 -mt-2 text-sm font-medium"
-            >Pensamiento</span
-          >
         </div>
         <br />
-        <div class="relative ml-10 mt-1 mb-4 mr-10">
+        <div class="relative ml-10 mt-0 mb-4 mr-10">
+          <div class="grid grid-cols-3">
+            <span class="text-start text-sm font-medium"
+            >Prospeccion</span
+          >
+          <span class="text-center text-sm font-medium">{{
+            this.personalidad04
+          }}</span>
+          <span class="text-end text-sm font-medium"
+            >Juzgador</span
+          >
+          </div>
           <input
             v-model="personalidad04"
             type="range"
@@ -257,15 +277,6 @@ export default {
             set="50"
             class="w-full mb-5 h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
           />
-          <span class="absolute left-0 top-0 -mt-2 text-sm font-medium"
-            >Prospeccion</span
-          >
-          <span class="absolute left-1/2 top-0 -mt-2 text-sm font-medium">{{
-            this.personalidad04
-          }}</span>
-          <span class="absolute right-0 top-0 -mt-2 text-sm font-medium"
-            >Juzgador</span
-          >
         </div>
       </div>
       <div class="grid gap-4 grid-cols-2 m-0 text-white">
@@ -273,51 +284,56 @@ export default {
           <div class="ml-4 mt-2 mb-2">
             <label for="motivaciones"><strong>Motivaciones</strong></label>
             <br />
-            <div class="grid gap-2 grid-cols-2">
-              <label class="mr-8" for="motivaciones">Incentivo</label>
+            <div class="grid gap-2 grid-cols-5 mt-2">
+              <label class="mr-8 mb-1 col-start-1 col-end-3" for="motivaciones">incentivo</label>
+              <span class="col-start-3 text-center col-end-4">h</span>
               <input
                 v-model="motivaciones.porcentaje1"
                 type="range"
                 min="0"
                 max="100"
                 set="30"
-                class="w-4/4 h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
+                class="w-4/4 h-3 col-start-4 col-span-2 rounded-lg mt-2 bg-gray-300 appearance-none focus:outline-none"
               />
-              <label class="mr-8" for="motivaciones">Miedo</label>
+              <label class="mr-8 mb-1 col-start-1 col-end-3" for="motivaciones">Miedo</label>
+              <span class="col-start-3 text-center col-end-4">h</span>
               <input
                 v-model="motivaciones.porcentaje2"
                 type="range"
                 min="0"
                 max="100"
-                set="15"
-                class="w-4/4 h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
+                set="30"
+                class="w-4/4 h-3 col-start-4 col-span-2 rounded-lg mt-2 bg-gray-300 appearance-none focus:outline-none"
               />
-              <label class="mr-8" for="motivaciones">Social</label>
+              <label class="mr-8 mb-1 col-start-1 col-end-3" for="motivaciones">Social</label>
+              <span class="col-start-3 text-center col-end-4">h</span>
               <input
                 v-model="motivaciones.porcentaje3"
                 type="range"
                 min="0"
                 max="100"
-                set="60"
-                class="w-4/4 h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
+                set="30"
+                class="w-4/4 h-3 col-start-4 col-span-2 rounded-lg mt-2 bg-gray-300 appearance-none focus:outline-none"
               />
-              <label class="mr-8" for="motivaciones">Logro</label>
+              <label class="mr-8 mb-1 col-start-1 col-end-3" for="motivaciones">Logro</label>
+              <span class="col-start-3 text-center col-end-4">h</span>
               <input
                 v-model="motivaciones.porcentaje4"
                 type="range"
                 min="0"
                 max="100"
-                set="45"
-                class="w-4/4 h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
+                set="30"
+                class="w-4/4 h-3 col-start-4 col-span-2 rounded-lg mt-2 bg-gray-300 appearance-none focus:outline-none"
               />
-              <label class="mr-8" for="motivaciones">Crecimiento</label>
+              <label class="mr-8 mb-1 col-start-1 col-end-3" for="motivaciones">Crecimiento</label>
+              <span class="col-start-3 text-center col-end-4">h</span>
               <input
                 v-model="motivaciones.porcentaje5"
                 type="range"
                 min="0"
                 max="100"
-                set="22"
-                class="w-4/4 h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
+                set="30"
+                class="w-4/4 h-3 col-start-4 col-span-2 rounded-lg mt-2 bg-gray-300 appearance-none focus:outline-none"
               />
             </div>
           </div>
@@ -325,8 +341,8 @@ export default {
         <div class="ml-2 mt-0">
           <div class="ml-4 mt-2 mb-2">
             <label for="marcas"><strong>Marcas</strong></label>
-            <br />
-            <textarea
+            <div class="mt-4">
+              <textarea
               placeholder="Escribe tus marcas aqui"
               class="pl-3 pr-3 bg-slate-900 rounded text-center placeholder-gray-200 text-base border-0 shadow outline-none focus:outline-none focus:ring w-11/12 mt-2"
               name="marcas"
@@ -335,6 +351,7 @@ export default {
               rows="7"
               v-model="marcas"
             ></textarea>
+            </div>
           </div>
         </div>
       </div>
@@ -342,10 +359,10 @@ export default {
         class="blocks absolute left-20 top-full w-10/12 h-14 justify-center text-center"
       >
         <button
-    class="bg-blue-500 hover:bg-blue-700 text-white mt-8 font-bold py-2 px-4 rounded"
+    class="bg-green-500 hover:bg-green-700 text-white mt-8 font-bold py-2 px-4 rounded"
     @click="submit()"
   >
-    Submit
+    Enviar
   </button>
       </div>
     </div>
