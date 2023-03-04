@@ -1,8 +1,12 @@
 <script>
+import iconEdad from "../components/icons/IconEdad.vue"
 import axios from "axios";
 let API_URL = "/api/guardarPersonasUxd.php";
 
 export default {
+  components:{
+    iconEdad,
+  },
   data() {
     return {
       nombre: "",
@@ -29,7 +33,7 @@ export default {
     submit() {
       axios
         .post(API_URL, {
-          nombre: this.nombre + ' ' +this.apellido,
+          nombre: this.nombre+this.apellido,
           edad: this.edad,
           estadoCivil: this.estadoCivil,
           trabajo: this.trabajo,
