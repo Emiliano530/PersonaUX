@@ -1,11 +1,15 @@
 <script>
 import iconEdad from "../components/icons/IconEdad.vue"
+import slider from "../components/sliderInput.vue"
+import inputsimple from "../components/inputsimple.vue"
+
 import axios from "axios";
 let API_URL = "/api/guardarPersonasUxd.php";
 export default {
   components:{
-    iconEdad,
+    iconEdad, slider, inputsimple
   },
+  emits: ['personalidad','datoInput'],
   data() {
     return {
       datos:{
@@ -58,7 +62,8 @@ export default {
     ],
         marcas: "",
       },
-    mensajeError: ""
+    mensaje: "",
+    bgColor: "",
     }
   },
   methods: {
@@ -66,11 +71,14 @@ export default {
       for (let key in this.datos) {
         if (!this.datos[key]) {
           window.scrollTo(0, 0);
-          this.mensajeError = "Se deben llenar todos los campos";
+          this.bgColor='rgb(220 38 38)'
+          this.mensaje = "Se deben llenar todos los campos";
           return;
         }
       }
       window.scrollTo(0, 0);
+      this.bgColor='rgb(22 163 74)'
+      this.mensaje = "Se ha guardado correctamente";
       axios
         .post(API_URL, {
           nombre: this.datos.nombre + ' ' + this.datos.apellido,
@@ -99,14 +107,43 @@ export default {
       // Aquí realizarías la acción de guardar el objeto person
     },
     enInput() {
-      this.mensajeError = "";
+      this.mensaje = "";
+    },
+    soloNumeros(event) {
+      // Permite solo números y el punto decimal
+      const charCode = (event.which) ? event.which : event.keyCode;
+      if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        event.preventDefault();
+      } else {
+        const currentValue = this.edad;
+        const newValue = currentValue.concat(String.fromCharCode(charCode));
+        if (newValue.length > 2) {
+          event.preventDefault();
+        }
+      }
+    },
+    personalidad1(s){
+      this.personalidad01=s;
+      console.log(s);
+    },
+    personalidad2(s){
+      this.personalidad02=s;
+      console.log(s);
+    },
+    personalidad3(s){
+      this.personalidad03=s;
+      console.log(s);
+    },
+    personalidad4(s){
+      this.personalidad04=s;
+      console.log(s);
     },
   },
 };
 </script>
 <template>
   <div class="grid grid-cols-1 m-2 place-items-center">
-    <div v-if="mensajeError" class="card bg-red-700 border border-blue-700 text-white text-center rounded-full w-2/5 mb-5 mt-5 p-6"><strong>{{ mensajeError }}</strong></div>
+    <div v-if="mensaje" :style="{ backgroundColor: bgColor }" class="card border border-blue-700 text-white text-center rounded-full w-2/5 mb-5 mt-5 p-6"><strong>{{ mensaje }}</strong></div>
   </div>
   <div class="card relative flex p-2 bg-slate-900 m-16 mt-2 mb-28">
     <div class="card static w-3/12 bg-violet-900 ml-12 mt-8 mb-8">
@@ -117,7 +154,7 @@ export default {
       <div class="blocks grid place-items-center text-center w-full">
         <div class="blocks static">
           <input
-            id="name"
+            id="nombre"
             maxlength="100"
             v-model="datos.nombre" @focus="enInput"
             placeholder="Nombre"
@@ -155,10 +192,10 @@ export default {
           <input
             id="edad"
             maxlength="2"
-            v-model="datos.edad" @focus="enInput"
+            v-model="datos.edad" @focus="enInput" @keypress="soloNumeros"
             placeholder="Edad"
             class="pl-3 pr-3 bg-violet-900 rounded text-white text-center placeholder-white text-lg border-0 shadow outline-none focus:outline-none focus:ring w-11/12 mt-6"
-            type="tel"
+            type="text"
           />
           <input
             id="residencia"
@@ -241,158 +278,54 @@ export default {
           </div>
         </div>
       </div>
-      <div class="pt-5 m-0 text-white">
+      <div class="pt-5 m-0 text-white"><!--aqui empieza personalidad (no moverlo)-->
         <label class="mt-4 ml-10" for=""><strong>Personalidad</strong></label>
         <br />
-        <div class="relative ml-10 mt-4 mr-10">
-          <div class="grid grid-cols-3">
-            <span class="text-start text-sm font-medium"
-            >Introvertido</span
-          >
-          <span class="text-center text-sm font-medium">{{
-            this.datos.personalidad01
-          }}</span>
-          <span class="text-end text-sm font-medium"
-            >Extrovertido</span
-          >
-          </div>
-          <input
-            v-model="datos.personalidad01" @focus="enInput"
-            type="range"
-            min="0"
-            max="100"
-            set="50"
-            class="w-full h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
-          />
-        </div>
+        <slider @click="enInput" @personalidad = "personalidad1">
+          <template v-slot:slot1>gg</template>
+          <template v-slot:slot2>ee</template>
+        </slider>
         <br />
-        <div class="relative ml-10 mt-0 mr-10">
-          <div class="grid grid-cols-3">
-            <span class="text-start text-sm font-medium"
-            >Observador</span
-          >
-          <span class="text-center text-sm font-medium">{{
-            this.datos.personalidad02
-          }}</span>
-          <span class="text-end text-sm font-medium"
-            >Intuitivo</span
-          >
-          </div>
-          <input
-            v-model="datos.personalidad02" @focus="enInput"
-            type="range"
-            min="0"
-            max="100"
-            set="50"
-            class="w-full h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
-          />
-        </div>
+        <slider  @click="enInput" @personalidad = "personalidad2">
+          <template v-slot:slot1>gg</template>
+          <template v-slot:slot2>ee</template>
+        </slider>
         <br />
-        <div class="relative ml-10 mt-0 mr-10">
-          <div class="grid grid-cols-3">
-            <span class="text-start text-sm font-medium"
-            >Emocional</span
-          >
-          <span class="text-center text-sm font-medium">{{
-            this.datos.personalidad03
-          }}</span>
-          <span class="text-end text-sm font-medium"
-            >Pensamiento</span
-          >
-          </div>
-          <input
-            v-model="datos.personalidad03" @focus="enInput"
-            type="range"
-            min="0"
-            max="100"
-            set="50"
-            class="w-full h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
-          />
-        </div>
+        <slider  @click="enInput" @personalidad = "personalidad3">
+          <template v-slot:slot1>gg</template>
+          <template v-slot:slot2>ee</template>
+        </slider>
         <br />
-        <div class="relative ml-10 mt-0 mb-4 mr-10">
-          <div class="grid grid-cols-3">
-            <span class="text-start text-sm font-medium"
-            >Prospeccion</span
-          >
-          <span class="text-center text-sm font-medium">{{
-            this.datos.personalidad04
-          }}</span>
-          <span class="text-end text-sm font-medium"
-            >Juzgador</span
-          >
-          </div>
-          <input
-            v-model="datos.personalidad04" @focus="enInput"
-            type="range"
-            min="0"
-            max="100"
-            set="50"
-            class="w-full mb-5 h-3 rounded-lg mt-4 bg-gray-300 appearance-none focus:outline-none"
-          />
-        </div>
-      </div>
+        <slider  @click="enInput" @personalidad = "personalidad4">
+          <template v-slot:slot1>gg</template>
+          <template v-slot:slot2>ee</template>
+        </slider>
+      </div> <!--hasta aqui son los slider de personalidad (no mover)-->
+
       <div class="grid gap-4 grid-cols-2 m-0 text-white">
         <div class="ml-6 mt-0 text-white">
-          <div class="ml-4 mt-2 mb-2">
+          <div class="ml-4 mt-8 mb-4 pb-8 bg-blue-900"> <!--aqui empieza lo de motivaciones-->
             <label for="motivaciones"><strong>Motivaciones</strong></label>
             <br />
-            <div class="grid gap-2 grid-cols-5 mt-2">
-              <label class="mr-8 mb-1 col-start-1 col-end-3" for="motivaciones">incentivo</label>
-              <span class="col-start-3 text-center col-end-4">{{ datos.motivaciones[0].porcentaje }}</span>
-              <input
-                v-model="datos.motivaciones[0].porcentaje" @focus="enInput"
-                type="range"
-                min="0"
-                max="100"
-                set="30"
-                class="w-4/4 h-3 col-start-4 col-span-2 rounded-lg mt-2 bg-gray-300 appearance-none focus:outline-none"
-              />
-              <label class="mr-8 mb-1 col-start-1 col-end-3" for="motivaciones">Miedo</label>
-              <span class="col-start-3 text-center col-end-4">{{ datos.motivaciones[1].porcentaje }}</span>
-              <input
-                v-model="datos.motivaciones[1].porcentaje" @focus="enInput"
-                type="range"
-                min="0"
-                max="100"
-                set="30"
-                class="w-4/4 h-3 col-start-4 col-span-2 rounded-lg mt-2 bg-gray-300 appearance-none focus:outline-none"
-              />
-              <label class="mr-8 mb-1 col-start-1 col-end-3" for="motivaciones">Social</label>
-              <span class="col-start-3 text-center col-end-4">{{ datos.motivaciones[2].porcentaje }}</span>
-              <input
-                v-model="datos.motivaciones[2].porcentaje" @focus="enInput"
-                type="range"
-                min="0"
-                max="100"
-                set="30"
-                class="w-4/4 h-3 col-start-4 col-span-2 rounded-lg mt-2 bg-gray-300 appearance-none focus:outline-none"
-              />
-              <label class="mr-8 mb-1 col-start-1 col-end-3" for="motivaciones">Logro</label>
-              <span class="col-start-3 text-center col-end-4">{{ datos.motivaciones[3].porcentaje }}</span>
-              <input
-                v-model="datos.motivaciones[3].porcentaje" @focus="enInput"
-                type="range"
-                min="0"
-                max="100"
-                set="30"
-                class="w-4/4 h-3 col-start-4 col-span-2 rounded-lg mt-2 bg-gray-300 appearance-none focus:outline-none"
-              />
-              <label class="mr-8 mb-1 col-start-1 col-end-3" for="motivaciones">Crecimiento</label>
-              <span class="col-start-3 text-center col-end-4">{{ datos.motivaciones[4].porcentaje }}</span>
-              <input
-                v-model="datos.motivaciones[4].porcentaje" @focus="enInput"
-                type="range"
-                min="0"
-                max="100"
-                set="30"
-                class="w-4/4 h-3 col-start-4 col-span-2 rounded-lg mt-2 bg-gray-300 appearance-none focus:outline-none"
-              />
-            </div>
-          </div>
+              <slider @click="enInput" @personalidad = "datos.motivaciones[0].porcentaje">
+                <template v-slot:slot1>Incentivo</template>
+              </slider>
+              <slider @click="enInput" @personalidad = "datos.motivaciones[1].porcentaje">
+                <template v-slot:slot1>Miedo</template>
+              </slider>
+              <slider @click="enInput" @personalidad = "datos.motivaciones[2].porcentaje">
+                <template v-slot:slot1>Social</template>
+              </slider>
+              <slider @click="enInput" @personalidad = "datos.motivaciones[3].porcentaje">
+                <template v-slot:slot1>Logro</template>
+              </slider>
+              <slider @click="enInput" @personalidad = "datos.motivaciones[4].porcentaje">
+                <template v-slot:slot1>Crecimiento</template>
+              </slider>
+          </div> <!--hasta aqui termina las motivaciones-->
         </div>
         <div class="ml-2 mt-0">
-          <div class="ml-4 mt-2 mb-2">
+          <div class="ml-4 mt-8 mb-2">
             <label for="marcas"><strong>Marcas</strong></label>
             <div class="mt-4">
               <textarea
