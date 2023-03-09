@@ -6,7 +6,7 @@ export default {
     return {
       info: [],
       personas: [],
-      
+
     };
   },
   mounted() {
@@ -23,7 +23,8 @@ export default {
 <template>
   <ul v-for="a in personas">
     <li>
-      {{a.nombre}}
+      {{a.nombre}}bhh
     </li>
   </ul>
+  <p>dd</p>
 </template>

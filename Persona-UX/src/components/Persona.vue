@@ -141,6 +141,7 @@ export default {
   },
 };
 </script>
+
 <template>
   <div class="grid grid-cols-1 m-2 place-items-center">
     <div v-if="mensaje" :style="{ backgroundColor: bgColor }" class="card border border-blue-700 text-white text-center rounded-full w-2/5 mb-5 mt-5 p-6"><strong>{{ mensaje }}</strong></div>
@@ -282,23 +283,23 @@ export default {
         <label class="mt-4 ml-10" for=""><strong>Personalidad</strong></label>
         <br />
         <slider @click="enInput" @personalidad = "personalidad1">
-          <template v-slot:slot1>gg</template>
-          <template v-slot:slot2>ee</template>
+          <template v-slot:slot1>Introvertido</template>
+          <template v-slot:slot2>Extrovertido</template>
         </slider>
         <br />
         <slider  @click="enInput" @personalidad = "personalidad2">
-          <template v-slot:slot1>gg</template>
-          <template v-slot:slot2>ee</template>
+          <template v-slot:slot1>Observador</template>
+          <template v-slot:slot2>Intuitivo</template>
         </slider>
         <br />
         <slider  @click="enInput" @personalidad = "personalidad3">
-          <template v-slot:slot1>gg</template>
-          <template v-slot:slot2>ee</template>
+          <template v-slot:slot1>Emocional</template>
+          <template v-slot:slot2>Pensador</template>
         </slider>
         <br />
         <slider  @click="enInput" @personalidad = "personalidad4">
-          <template v-slot:slot1>gg</template>
-          <template v-slot:slot2>ee</template>
+          <template v-slot:slot1>Cauteloso</template>
+          <template v-slot:slot2>Acertivo</template>
         </slider>
       </div> <!--hasta aqui son los slider de personalidad (no mover)-->
 
