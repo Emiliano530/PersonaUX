@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-let API_URL = 'https://isclab.com.mx/personasuxd/getPersonasUxd.php'; ////
+let API_URL = '/api/getPersonasUxd.php'; ////
 export default {
   data() {
     return {
@@ -23,7 +23,7 @@ export default {
 <template>
   <ul v-for="a in personas">
     <li>
-      {{a.nombre}}bhh
+      {{a.nombre}}
     </li>
   </ul>
   <p>dd</p>

@@ -1,19 +1,8 @@
 <script>
 export default {
-  props: {
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    value: {
-      type: String,
-      default: ''
-    }
-  },
   data() {
     return {
       dato: "",
-      placeholder: "input"
     };
   },
   methods: {
@@ -25,14 +14,12 @@ export default {
 </script>
 
 <template>
-  <div>
-    <input
-    :placeholder="placeholder"
+<div class="relative">
+    <input id="input"
       maxlength="20"
-      v-model="value"
+      v-model="dato"
       @change="enviar"
-      class="pl-3 pr-3 bg-violet-900 rounded text-white text-center placeholder-white text-lg border-none shadow outline-none focus:outline-none focus:ring w-full mt-8"
-      type="text"
-    />
-  </div>
+      type="text" class="block px-2.5 pb-2.5 pt-4 w-full text-xl text-white bg-transparent m-1 rounded-lg border-1 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+    <label for="input" class=" absolute text-xl text-white dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent dark:bg-transparent px-2 peer-focus:px-2 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"><slot></slot></label>
+</div>
 </template>
