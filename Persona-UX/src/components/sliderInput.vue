@@ -16,7 +16,7 @@ export default {
 
 <template>
 
-    <div class="relative ml-10 mt-4 mr-10">
+    <div class="relative ml-10 mt-4 mr-10 text-white">
           <div class="grid grid-cols-3">
             <span class="text-start text-sm font-medium"
             > <slot name="slot1"></slot> </span
