@@ -4,13 +4,13 @@ import titulo from './components/Titulo.vue'
 </script>
 
 <template>
-  <header>
+  <header class="bg-emerald-600">
     <img alt="logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
       <titulo msg="Personas UXD" />
 
-      <nav>
+      <nav class="">
         <RouterLink to="/">Inicio</RouterLink>
         <RouterLink to="/crear">Crear</RouterLink>
         <RouterLink to="/personas">Personas</RouterLink>
